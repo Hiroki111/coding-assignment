@@ -23,7 +23,7 @@
 
 - [Line 6](https://github.com/Hiroki111/coding-assignment/blob/task1/src/components/Movie.jsx#L6): `closeCard` is unused. Let's remove it.
 - [Line 15](https://github.com/Hiroki111/coding-assignment/blob/task1/src/components/Movie.jsx#L15): This function name (`myClickHandler`) doesn't describe what the function is supposed to do. How about something like `handleClickClose`?
-- [Line 16](https://github.com/Hiroki111/coding-assignment/blob/task1/src/components/Movie.jsx#L16): I'm trying to understand what this line is meant to. This handler is used only for onclick events for button. Is there a case where a button's onclick event is `undefined`? Also, `window.event` is deprecated: https://developer.mozilla.org/en-US/docs/Web/API/Window/event
+- [Line 16](https://github.com/Hiroki111/coding-assignment/blob/task1/src/components/Movie.jsx#L16): I'm trying to understand what this line is meant to. This handler is used only for onclick events for a button. Is there a case where a button's onclick event is `undefined`? Also, `window.event` is deprecated (https://developer.mozilla.org/en-US/docs/Web/API/Window/event), so I'd avoid using it
 - [Line 17](https://github.com/Hiroki111/coding-assignment/blob/task1/src/components/Movie.jsx#L17): `cancelBubble` is deprecated too: https://developer.mozilla.org/en-US/docs/Web/API/Event/cancelBubble. Let's remove this and use `stopPropagation` instead
 - [Line 19](https://github.com/Hiroki111/coding-assignment/blob/task1/src/components/Movie.jsx#L19): `e.target.parentElement.parentElement` seems to be the root element in this component, but isn't it `e.target.parentElement` that can have `'opened'` class?
 
