@@ -62,7 +62,7 @@
 
 ## src/test/movie.test.js
 
-- [Line 10](https://github.com/Hiroki111/coding-assignment/blob/task1/src/test/movie.test.js#L10): This fails at the `WaitFor` in line 10. Just like the failed test in `App.test.js`, I think you need to mock the fetch API
+- [Line 10](https://github.com/Hiroki111/coding-assignment/blob/task1/src/test/movie.test.js#L10): This fails. Just like the failed test in `App.test.js`, I think you need to mock the fetch API at the beginning of this test case.
 
 ## src/test/movieSlice.test.js
 
