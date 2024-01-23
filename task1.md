@@ -33,7 +33,7 @@
 
 ## src/components/WatchLater.jsx
 
-- [Line 18](https://github.com/Hiroki111/coding-assignment/blob/task1/src/components/WatchLater.jsx#L18): If I'm not mistaken, this `<div className="row">` will contain multiple `<Movie/>`s. Is it what it's supposed do? I feel that one `<div className="row">` is actually supposed to have only one `<Movie/>`
+- [Line 18](https://github.com/Hiroki111/coding-assignment/blob/task1/src/components/WatchLater.jsx#L18): If I'm not mistaken, this `<div className="row">` will contain multiple `<Movie/>`s. Is it what this `div` element supposed do? I feel that one `<div className="row">` is actually supposed to have only one `<Movie/>`
 
 ## src/components/YoutubePlayer.jsx
 
