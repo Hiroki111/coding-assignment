@@ -89,6 +89,6 @@
 
 ## Others
 
-- Semicolons are missing and formatting isn't consistent. I'd suggest setting a pre-commit hook with a code formatter (e.g. prettier). By doing so, all the files are formatted in a consistent way before making a commit. Likewise, you can set up ESLint with a pre-commit hook. If you do this, you won't miss if there is any unused variables. (I'll be happy to assist you if you need help for setting them up)
+- Semicolons are missing and formatting isn't consistent. I'd suggest setting a pre-commit hook with a code formatter (e.g. prettier). By doing so, all the files are formatted in a consistent way before making a commit. Likewise, you can set up ESLint with a pre-commit hook. If you set it up, you won't miss unused variables. (I'll be happy to assist you if you need help for setting them up)
 
-- I can see this pattern `const state = useSelector((state) => state)`. I'd prefer destructuring the sate (e.g. `const { starred, watchLater } = useSelector((state) => state)`). This way is more concise in my opinion, as `state` itself isn't used.
+- I can see this pattern `const state = useSelector((state) => state)`. I'd prefer destructuring the sate (e.g. `const { starred, watchLater } = useSelector((state) => state)`). In my opinion this is more concise, since `state` itself isn't used.
