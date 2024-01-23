@@ -78,7 +78,7 @@
 
 ## src/test/watchLater.test.js
 
-- [Line 9](https://github.com/Hiroki111/coding-assignment/blob/task1/src/test/watchLater.test.js#L9): Just like in `App.test.js`, I think you need to mock the fetch API so that this test case receives movie data. The following `waitFor` fails.
+- [Line 10](https://github.com/Hiroki111/coding-assignment/blob/task1/src/test/watchLater.test.js#L10): Just like in the failed test case in `App.test.js`, I think you need to mock the fetch API so that the API request returns mock movie data. This `waitFor` is failing.
 - [Line 17](https://github.com/Hiroki111/coding-assignment/blob/task1/src/test/watchLater.test.js#L17): There is no `expect` function used after this `userEvent.click(watchLaterLink)`. Is this really necessary?
 - [Line 19](https://github.com/Hiroki111/coding-assignment/blob/task1/src/test/watchLater.test.js#L19): If the following lines serve no purpose, let's remove them
 
