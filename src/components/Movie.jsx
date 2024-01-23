@@ -3,11 +3,8 @@ import starredSlice from '../data/starredSlice'
 import watchLaterSlice from '../data/watchLaterSlice'
 import placeholder from '../assets/not-found-500X750.jpeg'
 
-// remove unused variables: closeCard
 const Movie = ({ movie, viewTrailer, closeCard }) => {
 
-    // Wouldn't it be more concise to destructure "state" here?
-    // i.e. const { starred, watchLater } = useSelector((state) => state)
     const state = useSelector((state) => state)
     const { starred, watchLater } = state
     const { starMovie, unstarMovie } = starredSlice.actions
@@ -15,23 +12,11 @@ const Movie = ({ movie, viewTrailer, closeCard }) => {
 
     const dispatch = useDispatch()
 
-    // "myClickHandler" doesn't tell us what this function is supposed to do. 
-    // How about something like "handleClickClose"?
     const myClickHandler = (e) => {
-        // This handler is used only for onclick events for button
-        // Is there a case where a button's onclick event can be undefined?
-        // Also, window.event is deprecated: https://developer.mozilla.org/en-US/docs/Web/API/Window/event
-        if (!e) {
-            var e = window.event
-        }
-        // cancelBubble is deprecated too: https://developer.mozilla.org/en-US/docs/Web/API/Event/cancelBubble
-        // Let's remove this and use stopPropagation instead
+        if (!e) var e = window.event
         e.cancelBubble = true
-        if (e.stopPropagation) {
-            e.stopPropagation()
-        }
-        // e.target.parentElement.parentElement seems to be the root element in this component,
-        // but isn't it e.target.parentElement that can have 'opened' class?
+        if (e.stopPropagation) e.stopPropagation()
+
         e.target.parentElement.parentElement.classList.remove('opened')
     }
 

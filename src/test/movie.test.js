@@ -7,8 +7,6 @@ it('movies starred and saved to watch later', async () => {
     renderWithProviders(<App />)
 
     await userEvent.type(screen.getByTestId('search-movies'), 'forrest gump')
-    // This fails: Unable to find an element with the text: Through the Eyes of Forrest Gump. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
-    // I can see that App component uses fetch API. Perhaps you need to mock it so that this test case receives movie data
     await waitFor(() => {
       expect(screen.getAllByText('Through the Eyes of Forrest Gump')[0]).toBeInTheDocument()
     })
