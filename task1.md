@@ -43,7 +43,7 @@
 ## src/data/starredSlice.js
 
 - [Line 10](https://github.com/Hiroki111/coding-assignment/blob/task1/src/data/starredSlice.js#L10): I think `state.starredMovies` may have duplicate elements if `starMovie` is dispatched with a movie that is already in `state.starredMovies`. Just to be sure, is that an expected behavior?
-- [Line 14](https://github.com/Hiroki111/coding-assignment/blob/task1/src/data/starredSlice.js#L14): `Array.splice()`'s index counts a negative value from the end of the array. So, I think this line should be called only if `indexOfId` is non-negative.
+- [Line 14](https://github.com/Hiroki111/coding-assignment/blob/task1/src/data/starredSlice.js#L14): `Array.splice()`'s index counts a negative value from the end of the array (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice#start). So, I think this line should be called only if `indexOfId` is non-negative.
 
 ## src/data/watchLaterSlice.js
 
