@@ -68,7 +68,7 @@
 
 - [Line 8](https://github.com/Hiroki111/coding-assignment/blob/task1/src/test/movieSlice.test.js#L8): This `initialState` variable isn't used. Also, since you're updating the initial state with this action, perhaps it's more accurate to call it `state` or `updatedState` instead of `"initial"State`
 - [Line 12](https://github.com/Hiroki111/coding-assignment/blob/task1/src/test/movieSlice.test.js#L12): The `action` variable won't have a different value by just being passed into `moviesSlice.reducer`. Assuming that this action is supposed to update the `fetchStatus` of the state, shouldn't you test the state's `fetchStatus` rather than `action` here?
-- [Line 15](https://github.com/Hiroki111/coding-assignment/blob/task1/src/test/movieSlice.test.js#L15): `'should set payload when action is fulfilled'` is a probably more accurate test case in my opinion. Reducers return states, not payloads.
+- [Line 15](https://github.com/Hiroki111/coding-assignment/blob/task1/src/test/movieSlice.test.js#L15): `'should set movies when action is fulfilled'` is a probably more accurate test case in my opinion. Reducers update and return states, rather than returning payloads.
 - [Line 24](https://github.com/Hiroki111/coding-assignment/blob/task1/src/test/movieSlice.test.js#L24): Just like line 12, I think the current state's `fetchStatus` and `movies` are what need to be tested here
 - [Line 33](https://github.com/Hiroki111/coding-assignment/blob/task1/src/test/movieSlice.test.js#L33): Same here. The current state's `fetchStatus` should be tested here
 
