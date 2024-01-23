@@ -11,6 +11,7 @@ const Starred = ({viewTrailer}) => {
     const { clearAllStarred } = starredSlice.actions
     const dispatch = useDispatch()
 
+// how about joining the condition?
   return (
     <div className="starred" data-testid="starred">
       {starred.starredMovies.length > 0 && (<div data-testid="starred-movies" className="starred-movies">

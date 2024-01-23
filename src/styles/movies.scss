@@ -16,8 +16,12 @@
         margin-bottom: 2rem;
     }
 
+    // There is another .card at the end of this file.
+    // Can this .card be combined to the other .card?
     .card, 
     .card *,
+    // I can see card class in Movie.jsx, 
+    // but I can't find any adjacent element. Is ".card + *" used?
     .card + * {
         -webkit-transition: all .2s ease-in-out;
         -moz-transition: all .2s ease-in-out;

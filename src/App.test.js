@@ -9,6 +9,8 @@ it('renders watch later link', () => {
   expect(linkElement).toBeInTheDocument()
 })
 
+// this fails: Unable to find an element with the text: Through the Eyes of Forrest Gump. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+// You'd need to mock fetch API so that the test case receives mock movies
 it('search for movies', async () => {
   renderWithProviders(<App />)
   await userEvent.type(screen.getByTestId('search-movies'), 'forrest gump')

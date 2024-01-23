@@ -1,6 +1,11 @@
 import starredSlice from '../data/starredSlice'
 import { moviesMock } from './movies.mocks'
 
+
+// As I commented in starredSlice.js, unstarMovie might remove a movie incorrectly
+// if the provided movie doesn't exist.
+// I'd add a test case where unstarMovie uses a movie that doesn't exist
+// and state.starredMovies still contains the same array of movies
 describe('starredSlice test', () => {
 
     const state = { starredMovies: [] }

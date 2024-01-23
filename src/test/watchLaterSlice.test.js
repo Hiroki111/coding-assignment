@@ -1,6 +1,10 @@
 import watchLaterSlice from '../data/watchLaterSlice'
 import { moviesMock } from './movies.mocks'
 
+// As I commented in watchLaterSlice.js, removeFromWatchLater might remove a movie incorrectly
+// if the provided movie doesn't exist.
+// I'd add a test case where removeFromWatchLater uses a movie that doesn't exist
+// and state.watchLaterMovies still contains the same array of movies
 describe('watchLaterSlice test', () => {
 
     const state = { watchLaterMovies: [] }

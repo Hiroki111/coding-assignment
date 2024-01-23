@@ -15,6 +15,7 @@ const WatchLater = ({viewTrailer}) => {
     <div className="starred" data-testid="watch-later-div">
       {watchLater.watchLaterMovies.length > 0 && (<div data-testid="watch-later-movies" className="starred-movies">
         <h6 className="header">Watch Later List</h6>
+        {/* className="row" -> It sounds like that each <Movie/> should be in one <div className="row"> */}
         <div className="row">
         {watchLater.watchLaterMovies.map((movie) => (
           <Movie 
