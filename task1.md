@@ -13,7 +13,7 @@
 
 ## src/App.test.js
 
-- [Line 12](https://github.com/Hiroki111/coding-assignment/blob/task1/src/App.test.js#L12): This test case fails at `waitFor`. I think you need to mock the fetch API, so that the test case receives mock movies.
+- [Line 12](https://github.com/Hiroki111/coding-assignment/blob/task1/src/App.test.js#L12): This test case fails at `waitFor` in line 15. I think you need to mock the fetch API, so that the test case receives mock movies.
 
 ## src/app.scss
 
