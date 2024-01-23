@@ -5,12 +5,11 @@
 - [Line 22](https://github.com/Hiroki111/coding-assignment/blob/task1/src/App.js#L22): `isOpen` is unused. Let's remove it.
 - [Line 25](https://github.com/Hiroki111/coding-assignment/blob/task1/src/App.js#L25): `closeModal` is unused too.
 - [Line 27](https://github.com/Hiroki111/coding-assignment/blob/task1/src/App.js#L27): What this `closeCard` function is meant to? If this will be used in the future, I think it's helpful to leave a comment to explain the future usage of it.
-- [Line 33](https://github.com/Hiroki111/coding-assignment/blob/task1/src/App.js#L33): I'd prefer "dispatch(fetchMovies(`${ENDPOINT_SEARCH}&query=${query}`)) (although this is just my personal preference).
-- [Line 56](https://github.com/Hiroki111/coding-assignment/blob/task1/src/App.js#L56): `setOpen(true)` is called in the next line regardless of `!videoKey`, so I think that this line is redundant.
-- [Line 64](https://github.com/Hiroki111/coding-assignment/blob/task1/src/App.js#L64): What if the Promise of this fetch API is rejected? Isn't it necessary to implement error handling logic here?
-- [Line 67](https://github.com/Hiroki111/coding-assignment/blob/task1/src/App.js#L67): I'd write the condition as `videoData?.videos?.results?.length` (Again, this is just my personal preference)
+- [Line 56](https://github.com/Hiroki111/coding-assignment/blob/task1/src/App.js#L56): `setOpen(true)` is called in the next line regardless of `!videoKey`, so I think this line is redundant.
+- [Line 64](https://github.com/Hiroki111/coding-assignment/blob/task1/src/App.js#L64): What if the Promise of this fetch API is rejected? I think it's necessary to implement error handling logic here.
+- [Line 67](https://github.com/Hiroki111/coding-assignment/blob/task1/src/App.js#L67): I'd write the condition as `videoData?.videos?.results?.length` (This is just my personal preference, though)
 - [Line 79](https://github.com/Hiroki111/coding-assignment/blob/task1/src/App.js#L79): `Header.jsx` doesn't seem to have `searchParams` and `setSearchParams` props. Aren't they redundant in this line?
-- [Line 87](https://github.com/Hiroki111/coding-assignment/blob/task1/src/App.js#L87): There is already a scss file for this App.js (`app.scss`). I'd set the style of this element with the scss to make things more consistent.
+- [Line 87](https://github.com/Hiroki111/coding-assignment/blob/task1/src/App.js#L87): There is already a scss file for this App.js (`app.scss`). I'd set the style of this element within the scss to make things more consistent.
 
 ## src/App.test.js
 
