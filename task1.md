@@ -38,7 +38,7 @@
 ## src/components/YoutubePlayer.jsx
 
 - [Line 6](https://github.com/Hiroki111/coding-assignment/blob/task1/src/components/YoutubePlayer.jsx#L6): `"={true}"` is redundant, if this prop has to be always true
-- [Line 7](https://github.com/Hiroki111/coding-assignment/blob/task1/src/components/YoutubePlayer.jsx#L7): Same as line 6. You may not need `"={true}"`.
+- [Line 7](https://github.com/Hiroki111/coding-assignment/blob/task1/src/components/YoutubePlayer.jsx#L7): Same as line 6. You don't need `"={true}"` here if it's always true.
 
 ## src/data/starredSlice.js
 
