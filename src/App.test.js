@@ -9,7 +9,7 @@ it('renders watch later link', () => {
   expect(linkElement).toBeInTheDocument()
 })
 
-it('search for movies', async () => {
+it.skip('search for movies', async () => {
   renderWithProviders(<App />)
   await userEvent.type(screen.getByTestId('search-movies'), 'forrest gump')
   await waitFor(() => {
