@@ -19,10 +19,9 @@ const App = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const searchQuery = searchParams.get('search')
   const [videoKey, setVideoKey] = useState()
-  const [isOpen, setOpen] = useState(false)
   const navigate = useNavigate()
   
-  const closeModal = () => setOpen(false)
+  const closeModal = () => setVideoKey(null)
   
   const closeCard = () => {
 
@@ -53,8 +52,6 @@ const App = () => {
 
   const viewTrailer = (movie) => {
     getMovie(movie.id)
-    if (!videoKey) setOpen(true)
-    setOpen(true)
   }
 
   const getMovie = async (id) => {
@@ -82,6 +79,7 @@ const App = () => {
         {videoKey ? (
           <YouTubePlayer
             videoKey={videoKey}
+            onCloseModal={closeModal}
           />
         ) : (
           <div style={{padding: "30px"}}><h6>no trailer available. Try another movie</h6></div>

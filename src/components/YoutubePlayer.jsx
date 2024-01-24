@@ -1,11 +1,26 @@
-import ReactPlayer from 'react-player'
+import ReactPlayer from 'react-player';
+import Modal from 'react-modal';
+import '../styles/youtubePlayers.scss';
 
-const YoutubePlayer = ({ videoKey }) => (<ReactPlayer 
-  className="video-player" 
-  url={`https://www.youtube.com/watch?v=${videoKey}`} 
-  controls={true}
-  playing={true}
-  data-testid="youtube-player"
-/>);
+const YoutubePlayer = ({ videoKey, onCloseModal }) => {
+  return (
+    <Modal
+      isOpen
+      className="youtube-player-modal"
+      appElement={document.querySelector('#root')}
+    >
+      <div className="video-player-wrapper">
+        <ReactPlayer
+          className="video-player"
+          url={`https://www.youtube.com/watch?v=${videoKey}`}
+          data-testid="youtube-player"
+        />
+        <button className="close-button" onClick={onCloseModal}>
+          CLOSE
+        </button>
+      </div>
+    </Modal>
+  );
+};
 
 export default YoutubePlayer;
