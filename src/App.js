@@ -81,9 +81,7 @@ const App = () => {
             videoKey={videoKey}
             onCloseModal={closeModal}
           />
-        ) : (
-          <div style={{padding: "30px"}}><h6>no trailer available. Try another movie</h6></div>
-        )}
+        ) : null}
 
         <Routes>
           <Route path="/" element={<Movies movies={movies} viewTrailer={viewTrailer} closeCard={closeCard} />} />
