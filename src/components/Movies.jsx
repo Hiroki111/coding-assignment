@@ -9,14 +9,14 @@ import '../styles/movies.scss';
 const Movies = ({ viewTrailer }) => {
   const [searchParams] = useSearchParams();
   const searchQuery = searchParams.get('search');
-  const { movies, page } = useSelector((state) => state.movies);
+  const { movies, page, totalPages } = useSelector((state) => state.movies);
   const dispatch = useDispatch();
 
   const fetchData = () => {
     if (searchQuery) {
-      dispatch(fetchNextMovies(`${ENDPOINT_SEARCH}&query=${searchQuery}&page=${page + 1}`));
+      dispatch(fetchNextMovies(`${ENDPOINT_SEARCH}&query=${searchQuery}`));
     } else {
-      dispatch(fetchNextMovies(`${ENDPOINT_DISCOVER}&page=${page + 1}`));
+      dispatch(fetchNextMovies(`${ENDPOINT_DISCOVER}`));
     }
   };
 
@@ -24,7 +24,7 @@ const Movies = ({ viewTrailer }) => {
     <InfiniteScroll
       dataLength={movies.length}
       next={fetchData}
-      hasMore={true} // TODO: use the correct condition
+      hasMore={page < totalPages}
       style={{ overflow: 'hidden' }} // NOTE: InfiniteScroll has embedded styles
     >
       <div data-testid="movies" className="movie-grid">

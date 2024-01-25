@@ -7,8 +7,18 @@ const makeFetchRequest = async (apiUrl) => {
   }
   return response.json()
 }
+
 export const fetchMovies = createAsyncThunk('fetch-movies', makeFetchRequest)
-export const fetchNextMovies = createAsyncThunk('fetch-next-movies', makeFetchRequest);
+
+export const fetchNextMovies = createAsyncThunk('fetch-next-movies', async (apiUrl, { getState }) => {
+  const { page } = getState().movies;
+  const nextPageUrl = `${apiUrl}&page=${page + 1}`;
+  return makeFetchRequest(nextPageUrl);
+});
+
+const FETCH_STATUS_SUCCESS = 'success';
+const FETCH_STATUS_LOADING = 'loading';
+const FETCH_STATUS_ERROR = 'error';
 
 const moviesSlice = createSlice({
     name: 'movies',
@@ -16,24 +26,27 @@ const moviesSlice = createSlice({
         movies: [],
         fetchStatus: '',
         page: 0,
+        totalPages: Number.MAX_SAFE_INTEGER,
     },
     extraReducers: (builder) => {
         builder.addCase(fetchMovies.fulfilled, (state, action) => {
             state.movies = action.payload.results
             state.page = action.payload.page
-            state.fetchStatus = 'success'
+            state.totalPages = action.payload.total_pages
+            state.fetchStatus = FETCH_STATUS_SUCCESS
         }).addCase(fetchMovies.pending, (state) => {
-            state.fetchStatus = 'loading'
+            state.fetchStatus = FETCH_STATUS_LOADING
         }).addCase(fetchMovies.rejected, (state) => {
-            state.fetchStatus = 'error'
+            state.fetchStatus = FETCH_STATUS_ERROR
         }).addCase(fetchNextMovies.fulfilled, (state, action) => {
             state.movies = state.movies.concat(action.payload.results)
             state.page = action.payload.page
-            state.fetchStatus = 'success'
+            state.totalPages = action.payload.total_pages
+            state.fetchStatus = FETCH_STATUS_SUCCESS
         }).addCase(fetchNextMovies.pending, (state) => {
-            state.fetchStatus = 'loading'
+            state.fetchStatus = FETCH_STATUS_LOADING
         }).addCase(fetchNextMovies.rejected, (state) => {
-            state.fetchStatus = 'error'
+            state.fetchStatus = FETCH_STATUS_ERROR
         })
     }
 })
