@@ -11,6 +11,10 @@ beforeEach(() => {
   });
 });
 
+afterEach(() => {
+  jest.clearAllMocks();
+});
+
 it('should star a movie when its starred link is clicked', async () => {
   renderWithProviders(<App />);
 
@@ -29,8 +33,8 @@ it('should save a movie to watch later list when its watch later link is clicked
 
   expect(screen.queryByTestId('remove-watch-later')).not.toBeInTheDocument();
 
-  const watchLaterLink = await screen.findAllByTestId('watch-later');
-  const firstWatchLaterLink = watchLaterLink[0];
+  const watchLaterLinks = await screen.findAllByTestId('watch-later');
+  const firstWatchLaterLink = watchLaterLinks[0];
   await userEvent.click(firstWatchLaterLink);
   expect(screen.getByTestId('remove-watch-later')).toBeInTheDocument();
 });
