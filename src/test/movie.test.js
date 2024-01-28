@@ -1,35 +1,36 @@
-import { screen, waitFor } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
-import { renderWithProviders } from './utils'
-import App from '../App'
+import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { renderWithProviders } from './utils';
+import App from '../App';
+import { moviesMock } from './movies.mocks';
 
-it.skip('movies starred and saved to watch later', async () => {
-    renderWithProviders(<App />)
+beforeEach(() => {
+  jest.spyOn(global, 'fetch').mockResolvedValue({
+    json: () => Promise.resolve({ results: moviesMock }),
+    ok: true,
+  });
+});
 
-    await userEvent.type(screen.getByTestId('search-movies'), 'forrest gump')
-    await waitFor(() => {
-      expect(screen.getAllByText('Through the Eyes of Forrest Gump')[0]).toBeInTheDocument()
-    })
-    const starMovieLink = screen.getAllByTestId('starred-link')[0]
-    await waitFor(() => {
-        expect(starMovieLink).toBeInTheDocument()
-    })
-    await userEvent.click(starMovieLink)
-    await waitFor(() => {
-      expect(screen.getByTestId('star-fill')).toBeInTheDocument()
-    })
-    await waitFor(() => {
-        expect(screen.getByTestId('unstar-link')).toBeInTheDocument()
-    })
+it('should star a movie when its starred link is clicked', async () => {
+  renderWithProviders(<App />);
 
-    const watchLaterLink = screen.getAllByTestId('watch-later')[0]
-    await waitFor(() => {
-        expect(watchLaterLink).toBeInTheDocument()
-    })
-    await userEvent.click(watchLaterLink)
-    await waitFor(() => {
-      expect(screen.getByTestId('remove-watch-later')).toBeInTheDocument()
-    })
+  expect(screen.queryByTestId('star-fill')).not.toBeInTheDocument();
+  expect(screen.queryByTestId('unstar-link')).not.toBeInTheDocument();
 
-    await userEvent.click(screen.getAllByTestId('remove-watch-later')[0])
-})
+  const starMovieLink = await screen.findAllByTestId('starred-link');
+  const firstStarMovieLink = starMovieLink[0];
+  await userEvent.click(firstStarMovieLink);
+  expect(screen.getByTestId('star-fill')).toBeInTheDocument();
+  expect(screen.getByTestId('unstar-link')).toBeInTheDocument();
+});
+
+it('should save a movie to watch later list when its watch later link is clicked', async () => {
+  renderWithProviders(<App />);
+
+  expect(screen.queryByTestId('remove-watch-later')).not.toBeInTheDocument();
+
+  const watchLaterLink = await screen.findAllByTestId('watch-later');
+  const firstWatchLaterLink = watchLaterLink[0];
+  await userEvent.click(firstWatchLaterLink);
+  expect(screen.getByTestId('remove-watch-later')).toBeInTheDocument();
+});
