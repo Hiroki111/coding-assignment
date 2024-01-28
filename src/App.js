@@ -44,7 +44,13 @@ const App = () => {
     <div className="App">
       <Header />
       <div className="container">
-        {videoKey ? (<YouTubePlayer videoKey={videoKey}  onCloseModal={closeModal}/>) : null}
+        {videoKey ? (
+          <YouTubePlayer
+            videoKey={videoKey}
+          />
+        ) : (
+          <div style={{padding: "30px"}}><h6>no trailer available. Try another movie</h6></div>
+        )}
         <Routes>
           <Route path="/" element={<Movies viewTrailer={viewTrailer} />} />
           <Route path="/starred" element={<Starred viewTrailer={viewTrailer} />} />
