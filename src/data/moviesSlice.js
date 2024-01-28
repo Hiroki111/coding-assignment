@@ -16,9 +16,9 @@ export const fetchNextMovies = createAsyncThunk('fetch-next-movies', async (apiU
   return makeFetchRequest(nextPageUrl);
 });
 
-const FETCH_STATUS_SUCCESS = 'success';
-const FETCH_STATUS_LOADING = 'loading';
-const FETCH_STATUS_ERROR = 'error';
+export const FETCH_STATUS_SUCCESS = 'success';
+export const FETCH_STATUS_LOADING = 'loading';
+export const FETCH_STATUS_ERROR = 'error';
 
 const moviesSlice = createSlice({
     name: 'movies',
