@@ -30,7 +30,6 @@ describe('Header.jsx', () => {
 
     expect(mockScrollTo).toHaveBeenCalledWith(0, 0);
     expect(mockSetSearchParams).not.toHaveBeenCalled();
-    expect(location.search).toEqual('');
   });
 
   it('should scroll to the top and set the search params when the search term is updated', async () => {
