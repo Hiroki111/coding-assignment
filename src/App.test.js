@@ -23,7 +23,7 @@ it('renders watch later link', async () => {
 });
 
 it('should render movies', async () => {
-  await act(async () => renderWithProviders(<App />));
+  renderWithProviders(<App />);
 
   await waitFor(() => {
     fetchMoviesResponseMock.results.forEach((movie) => expect(screen.getAllByText(movie.title)[0]).toBeInTheDocument());
@@ -31,7 +31,7 @@ it('should render movies', async () => {
 });
 
 it('renders watch later component', async () => {
-  await act(async () => renderWithProviders(<App />));
+  renderWithProviders(<App />);
 
   const user = userEvent.setup();
   await user.click(screen.getByTestId('nav-watch-later'));
@@ -39,7 +39,7 @@ it('renders watch later component', async () => {
 });
 
 it('renders starred component', async () => {
-  await act(async () => renderWithProviders(<App />));
+  renderWithProviders(<App />);
 
   const user = userEvent.setup();
   await user.click(screen.getByTestId('nav-starred'));
