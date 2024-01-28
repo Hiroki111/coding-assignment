@@ -2,11 +2,11 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderWithProviders } from './utils';
 import App from '../App';
-import { moviesMock } from './movies.mocks';
+import { fetchMoviesResponseMock } from './movies.mocks';
 
 beforeEach(() => {
   jest.spyOn(global, 'fetch').mockResolvedValue({
-    json: () => Promise.resolve({ results: moviesMock }),
+    json: () => Promise.resolve(fetchMoviesResponseMock),
     ok: true,
   });
 });
