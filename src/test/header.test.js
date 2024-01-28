@@ -1,7 +1,7 @@
 import React from 'react';
 import debounce from 'lodash/debounce';
 import { fireEvent, waitFor, screen } from '@testing-library/react';
-import Header, { SEARCH_DEBOUNCE_RATE } from '../components/Header';
+import Header from '../components/Header';
 import { renderWithProviders } from './utils';
 
 const mockScrollTo = jest.fn();
@@ -39,8 +39,6 @@ describe('Header.jsx', () => {
 
     const searchInput = screen.getByTestId('search-movies');
     fireEvent.change(searchInput, { target: { value: 'new-search-term' } });
-
-    await new Promise((res) => setTimeout(() => res(), SEARCH_DEBOUNCE_RATE));
 
     await waitFor(() => expect(mockScrollTo).toHaveBeenCalledWith(0, 0));
     await waitFor(() =>
