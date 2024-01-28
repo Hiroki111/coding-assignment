@@ -2,25 +2,31 @@ import { screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { renderWithProviders } from "./test/utils"
 import App from './App'
+import { moviesMock } from './test/movies.mocks'
+
+beforeEach(() => {
+  jest.spyOn(global, 'fetch').mockResolvedValue({
+    json: () => Promise.resolve({ results: moviesMock }),
+    ok: true,
+  });
+});
+
+afterEach(() => {
+  jest.restoreAllMocks();
+});
 
 it('renders watch later link', () => {
   renderWithProviders(<App />)
-  const linkElement = screen.getByText(/watch later/i)
+  const linkElement = screen.getByTestId('nav-watch-later')
   expect(linkElement).toBeInTheDocument()
-})
+});
 
-it.skip('search for movies', async () => {
-  renderWithProviders(<App />)
-  await userEvent.type(screen.getByTestId('search-movies'), 'forrest gump')
+it('should render movies', async() => {
+  renderWithProviders(<App />);
   await waitFor(() => {
-    expect(screen.getAllByText('Through the Eyes of Forrest Gump')[0]).toBeInTheDocument()
-  })
-  const viewTrailerBtn = screen.getAllByText('View Trailer')[0]
-  await userEvent.click(viewTrailerBtn)
-  await waitFor(() => {
-    expect(screen.getByTestId('youtube-player')).toBeInTheDocument()
-  })
-})
+    moviesMock.forEach(movie => expect(screen.getAllByText(movie.title)[0]).toBeInTheDocument());
+  });
+});
 
 it('renders watch later component', async() => {
   renderWithProviders(<App />)

@@ -28,9 +28,9 @@ const Movies = ({ viewTrailer }) => {
       style={{ overflow: 'hidden' }} // NOTE: InfiniteScroll has embedded styles
     >
       <div data-testid="movies" className="movie-grid">
-        {movies.map((movie) => {
-          return <Movie movie={movie} key={movie.id} viewTrailer={viewTrailer} />;
-        })}
+        {movies.map((movie) => (
+          <Movie movie={movie} key={movie.id} viewTrailer={viewTrailer} />
+        ))}
       </div>
     </InfiniteScroll>
   );
