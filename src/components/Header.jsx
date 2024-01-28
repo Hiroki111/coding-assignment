@@ -6,7 +6,7 @@ import { fetchMovies } from '../data/moviesSlice'
 import '../styles/header.scss'
 import { ENDPOINT_SEARCH, ENDPOINT_DISCOVER } from '../constants'
 
-const SEARCH_DEBOUNCE_RATE = 250;
+export const SEARCH_DEBOUNCE_RATE = 250;
 
 const Header = () => {
   const [searchParams, setSearchParams] = useSearchParams()
