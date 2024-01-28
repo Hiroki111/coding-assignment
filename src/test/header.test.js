@@ -28,7 +28,7 @@ describe('Header.jsx', () => {
 
     fireEvent.click(homeLink);
 
-    expect(mockScrollTo).toHaveBeenCalledTimes(1);
+    expect(mockScrollTo).toHaveBeenCalledWith(0, 0);
     expect(mockSetSearchParams).not.toHaveBeenCalled();
     expect(location.search).toEqual('');
   });
@@ -42,7 +42,7 @@ describe('Header.jsx', () => {
 
     await new Promise((res) => setTimeout(() => res(), SEARCH_DEBOUNCE_RATE));
 
-    await waitFor(() => expect(mockScrollTo).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(mockScrollTo).toHaveBeenCalledWith(0, 0));
     await waitFor(() =>
       expect(mockSetSearchParams).toHaveBeenCalledWith(new URLSearchParams({ search: 'new-search-term' })),
     );
