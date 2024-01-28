@@ -25,7 +25,7 @@ const Movies = ({ viewTrailer }) => {
       dataLength={movies.length}
       next={fetchData}
       hasMore={page < totalPages}
-      style={{ overflow: 'hidden' }} // NOTE: InfiniteScroll has embedded styles
+      style={{ overflow: 'hidden' }}
     >
       <div data-testid="movies" className="movie-grid">
         {movies.map((movie) => (
