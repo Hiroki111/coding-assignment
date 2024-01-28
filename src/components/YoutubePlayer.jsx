@@ -7,7 +7,7 @@ const YoutubePlayer = ({ videoKey, onCloseModal }) => {
     <Modal
       isOpen
       className="youtube-player-modal"
-      appElement={document.querySelector('#root')}
+      ariaHideApp={false}
     >
       <div className="video-player-wrapper">
         <ReactPlayer
