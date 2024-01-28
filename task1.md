@@ -10,6 +10,7 @@
 - [Line 67](https://github.com/Hiroki111/coding-assignment/blob/task1/src/App.js#L67): I'd write the condition as `videoData?.videos?.results?.length` (This is just my personal preference, though)
 - [Line 79](https://github.com/Hiroki111/coding-assignment/blob/task1/src/App.js#L79): `Header.jsx` doesn't seem to have `searchParams` and `setSearchParams` props. Aren't they redundant in this line?
 - [Line 87](https://github.com/Hiroki111/coding-assignment/blob/task1/src/App.js#L87): There is already a scss file for this App.js (`app.scss`). I'd set the style of this element within the scss to make things more consistent.
+- [Line 91](https://github.com/Hiroki111/coding-assignment/blob/task1/src/App.js#L91): In this `App.js`, `movies` variable is used only in this line and `movies` can be accessed from any component via Redux. Instead of getting `movies` in `App.js` and passing it to `Movies.jsx`, how about getting `movies` in `Movies.jsx` directly?
 
 ## src/App.test.js
 
@@ -27,6 +28,10 @@
 - [Line 17](https://github.com/Hiroki111/coding-assignment/blob/task1/src/components/Movie.jsx#L17): `cancelBubble` is deprecated too: https://developer.mozilla.org/en-US/docs/Web/API/Event/cancelBubble. Let's remove this and use `stopPropagation` instead
 - [Line 19](https://github.com/Hiroki111/coding-assignment/blob/task1/src/components/Movie.jsx#L19): `e.target.parentElement.parentElement` seems to be the root element in this component, but isn't it `e.target.parentElement` that can have `'opened'` class?
 
+## src/components/Movies.jsx
+
+- [Line 8](https://github.com/Hiroki111/coding-assignment/blob/task1/src/components/Movies.jsx#L8): `movies.movies.results?.map` doesn't seem straightforward. Wouldn't it be better for `Movie.jsx` to get only an array of movies, so that you can put `movies?.map` here?
+
 ## src/components/Starred.jsx
 
 - [Line 16](https://github.com/Hiroki111/coding-assignment/blob/task1/src/components/Starred.jsx#L16): How about joining this conditional rendering with the one in line 33 (`starred.starredMovies.length === 0`) by using `?` and `:` ? If `starred.starredMovies.length > 0` is false, you can start the second conditional rendering without specifying `starred.starredMovies.length === 0`.
@@ -39,6 +44,10 @@
 
 - [Line 6](https://github.com/Hiroki111/coding-assignment/blob/task1/src/components/YoutubePlayer.jsx#L6): `"={true}"` is redundant, if this prop has to be always true
 - [Line 7](https://github.com/Hiroki111/coding-assignment/blob/task1/src/components/YoutubePlayer.jsx#L7): Same as line 6. You don't need `"={true}"` here if it's always true.
+
+## src/data/moviesSlice.js
+
+- [Line 17](https://github.com/Hiroki111/coding-assignment/blob/task1/src/data/moviesSlice.js#L17): I found that `action.payload` contains an object which has `page`, `results`, `total_pages`, `total_results` properties. However, the `movies` state is supposed to be an array (Line11). Isn't this line supposed to be `state.movies = action.payload.results`?
 
 ## src/data/starredSlice.js
 
@@ -92,3 +101,5 @@
 - Semicolons are missing and formatting isn't consistent. I'd suggest setting a pre-commit hook with a code formatter (e.g. prettier). By doing so, all the files are formatted in a consistent way before making a commit. Likewise, you can set up ESLint with a pre-commit hook. If you set it up, you won't miss unused variables. (I'll be happy to assist you if you need help for setting them up)
 
 - I can see this pattern `const state = useSelector((state) => state)`. I'd prefer destructuring the sate (e.g. `const { starred, watchLater } = useSelector((state) => state)`). In my opinion this is more concise, since `state` itself isn't used.
+
+- `App.js` contains a React component `<App/>`. Shouldn't this file be called `App.jsx`? (The same goes for `App.test.js`)
