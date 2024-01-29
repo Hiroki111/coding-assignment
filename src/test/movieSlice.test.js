@@ -17,7 +17,7 @@ describe('MovieSlice', () => {
     totalPages: Number.MAX_SAFE_INTEGER,
   };
   const mockStore = configureStore([thunk]);
-  const MOCK_API_URL = 'https:example.com/movies';
+  const MOCK_API_URL = 'https://example.com/movies';
 
   describe('Actions', () => {
     afterEach(() => {
