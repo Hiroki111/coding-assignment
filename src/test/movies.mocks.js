@@ -14,3 +14,10 @@ export const moviesMock = [
         'title': 'Interstellar'
     }
 ]
+
+export const fetchMoviesResponseMock = { 
+    results: moviesMock,
+    page: 1,
+    total_pages: 10,
+    total_results: 100,
+};

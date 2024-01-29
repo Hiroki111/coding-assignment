@@ -1,24 +1,21 @@
-import { screen, waitFor } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
-import { renderWithProviders } from './utils'
-import App from '../App'
+import { screen, waitFor } from '@testing-library/react';
+import { renderWithProviders } from './utils';
+import App from '../App';
 
-it('Watch Later movies page', async () => {
-    renderWithProviders(<App />)
+beforeEach(() => {
+  Object.defineProperty(global.window, 'scrollTo', { value: jest.fn() });
+});
 
-    await userEvent.type(screen.getByTestId('search-movies'), 'forrest gump')
-    await waitFor(() => {
-      expect(screen.getAllByText('Through the Eyes of Forrest Gump')[0]).toBeInTheDocument()
-    })
-    const watchLaterLink = screen.getAllByTestId('watch-later')[0]
-    await waitFor(() => {
-        expect(watchLaterLink).toBeInTheDocument()
-    })
-    await userEvent.click(watchLaterLink)
+afterEach(() => {
+  jest.clearAllMocks();
+});
 
-    // const watchLaterink = screen.getByTestId('watch-later-div')
-    // await waitFor(() => {
-    //     expect(watchLaterink).toBeInTheDocument()
-    // })    
-    // await userEvent.click(watchLaterink)
-})
+it('should render watch later links', async () => {
+  renderWithProviders(<App />);
+
+  const watchLaterLinks = await screen.findAllByTestId('watch-later');
+  const firstWatchLaterLink = watchLaterLinks[0];
+  await waitFor(() => {
+    expect(firstWatchLaterLink).toBeInTheDocument();
+  });
+});

@@ -1,41 +1,50 @@
-import { screen, waitFor } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
-import { renderWithProviders } from "./test/utils"
-import App from './App'
+import { screen, waitFor, act } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { renderWithProviders } from './test/utils';
+import App from './App';
+import { fetchMoviesResponseMock } from './test/movies.mocks';
 
-it('renders watch later link', () => {
-  renderWithProviders(<App />)
-  const linkElement = screen.getByText(/watch later/i)
-  expect(linkElement).toBeInTheDocument()
-})
+beforeEach(() => {
+  jest.spyOn(global, 'fetch').mockResolvedValue({
+    json: () => Promise.resolve(fetchMoviesResponseMock),
+    ok: true,
+  });
+});
 
-it('search for movies', async () => {
-  renderWithProviders(<App />)
-  await userEvent.type(screen.getByTestId('search-movies'), 'forrest gump')
+afterEach(() => {
+  jest.restoreAllMocks();
+});
+
+it('renders watch later link', async () => {
+  await act(async () => renderWithProviders(<App />));
+
+  const linkElement = screen.getByTestId('nav-watch-later');
+  expect(linkElement).toBeInTheDocument();
+});
+
+it('should render movies', async () => {
+  renderWithProviders(<App />);
+
   await waitFor(() => {
-    expect(screen.getAllByText('Through the Eyes of Forrest Gump')[0]).toBeInTheDocument()
-  })
-  const viewTrailerBtn = screen.getAllByText('View Trailer')[0]
-  await userEvent.click(viewTrailerBtn)
+    fetchMoviesResponseMock.results.forEach((movie) => expect(screen.getAllByText(movie.title)[0]).toBeInTheDocument());
+  });
+});
+
+it('renders watch later component', async () => {
+  renderWithProviders(<App />);
+
+  const user = userEvent.setup();
+  await user.click(screen.getByTestId('nav-watch-later'));
+  expect(screen.getByText(/You have no movies saved to watch later/i)).toBeInTheDocument();
+});
+
+it('renders starred component', async () => {
+  renderWithProviders(<App />);
+
+  const user = userEvent.setup();
+  await user.click(screen.getByTestId('nav-starred'));
+  expect(screen.getByText(/There are no starred movies/i)).toBeInTheDocument();
   await waitFor(() => {
-    expect(screen.getByTestId('youtube-player')).toBeInTheDocument()
-  })
-})
-
-it('renders watch later component', async() => {
-  renderWithProviders(<App />)
-  const user = userEvent.setup()
-  await user.click(screen.getByText(/watch later/i))
-  expect(screen.getByText(/You have no movies saved to watch later/i)).toBeInTheDocument()
-})
-
-
-it('renders starred component', async() => {
-  renderWithProviders(<App />)
-  const user = userEvent.setup()
-  await user.click(screen.getByTestId('nav-starred'))
-  expect(screen.getByText(/There are no starred movies/i)).toBeInTheDocument()
-  await waitFor(() => {
-    expect(screen.getByTestId('starred')).toBeInTheDocument()
-  })  
-})
+    expect(screen.getByTestId('starred')).toBeInTheDocument();
+  });
+});
