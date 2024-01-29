@@ -57,7 +57,7 @@
 ## src/data/watchLaterSlice.js
 
 - [Line 9](https://github.com/Hiroki111/coding-assignment/blob/task1/src/data/watchLaterSlice.js#L9): Just like `starMovie` in `starredSlice.js`, this `addToWatchLater` action may add a movie that already exists in `state.watchLaterMovies`. Just to be sure, is that an expected behavior?
-- [Line 14](https://github.com/Hiroki111/coding-assignment/blob/task1/src/data/watchLaterSlice.js#L14): Just like `unstarMovie` in `starredSlice,js`, it's probably necessary to use this line only if `indexOfId` is non-negative.
+- [Line 14](https://github.com/Hiroki111/coding-assignment/blob/task1/src/data/watchLaterSlice.js#L14): Just like `unstarMovie` in `starredSlice,js`, it's probably safer to use this line only if `indexOfId` is non-negative.
 - [Line 16](https://github.com/Hiroki111/coding-assignment/blob/task1/src/data/watchLaterSlice.js#L16): This seems a typo (`remveAllWatchLater` -> `removeAllWatchLater`)
 
 ## src/styles/header.scss
