@@ -8,7 +8,7 @@
 - [Line 56](https://github.com/Hiroki111/coding-assignment/blob/task1/src/App.js#L56): `setOpen(true)` is called in the next line regardless of `!videoKey`, so I think this line is redundant.
 - [Line 64](https://github.com/Hiroki111/coding-assignment/blob/task1/src/App.js#L64): What if the Promise of this fetch API is rejected? I think it's necessary to implement error handling logic here.
 - [Line 67](https://github.com/Hiroki111/coding-assignment/blob/task1/src/App.js#L67): I'd write the condition as `videoData?.videos?.results?.length` (This is just my personal preference, though)
-- [Line 79](https://github.com/Hiroki111/coding-assignment/blob/task1/src/App.js#L79): `Header.jsx` doesn't seem to have `searchParams` and `setSearchParams` props. Aren't they redundant in this line?
+- [Line 79](https://github.com/Hiroki111/coding-assignment/blob/task1/src/App.js#L79): `Header.jsx` doesn't seem to have `searchParams` and `setSearchParams` props. Aren't they redundant in this line? Also, `searchMovies` function can be created in `Header.jsx`, so you can create the function there instead passing it from `App.js`.
 - [Line 87](https://github.com/Hiroki111/coding-assignment/blob/task1/src/App.js#L87): There is already a scss file for this App.js (`app.scss`). I'd set the style of this element within the scss to make things more consistent.
 - [Line 91](https://github.com/Hiroki111/coding-assignment/blob/task1/src/App.js#L91): In this `App.js`, `movies` variable is used only in this line and `movies` can be accessed from any component via Redux. Instead of getting `movies` in `App.js` and passing it to `Movies.jsx`, how about getting `movies` in `Movies.jsx` directly?
 
