@@ -17,8 +17,8 @@ const Header = () => {
 
   const searchMovies = (query) => {
     window.scrollTo(0, 0);
+    navigate('/');
     if (!query) {
-      navigate('/');
       dispatch(fetchMovies(ENDPOINT_DISCOVER));
     } else {
       setSearchParams(createSearchParams({ search: query }));

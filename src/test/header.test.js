@@ -30,6 +30,7 @@ describe('Header.jsx', () => {
 
     expect(mockScrollTo).toHaveBeenCalledWith(0, 0);
     expect(mockSetSearchParams).not.toHaveBeenCalled();
+    expect(location.pathname).toEqual('/');
   });
 
   it('should scroll to the top and set the search params when the search term is updated', async () => {
@@ -43,5 +44,6 @@ describe('Header.jsx', () => {
     await waitFor(() =>
       expect(mockSetSearchParams).toHaveBeenCalledWith(new URLSearchParams({ search: 'new-search-term' })),
     );
+    await waitFor(() => expect(location.pathname).toEqual('/'));
   });
 });
